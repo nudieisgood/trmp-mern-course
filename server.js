@@ -39,7 +39,8 @@ cloudinary.config({
 //transfer the complete project file to a public folder, and that is
 //going to be the front end of our application
 const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.resolve(__dirname, "./public")));
+// app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(express.static(path.resolve(__dirname, "./client/dist")));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -51,7 +52,7 @@ app.use("/api/v1/auth", authRouter);
 
 // - in server.js point to index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
 
 //任何request url不符合前面的route會run 此 middleware
